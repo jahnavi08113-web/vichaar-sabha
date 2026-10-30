@@ -1,0 +1,26 @@
+{
+  "sides": {
+    "vipaksh": "A",
+    "paksh": "B"
+  },
+  "claims": {
+    "C1": {
+      "role": "vipaksh",
+      "id": "V1"
+    },
+    "C2": {
+      "role": "paksh",
+      "id": "P1"
+    }
+  },
+  "evidence": {
+    "E1": "PE1"
+  },
+  "evidence_aliases": {
+    "PE1": "E1"
+  },
+  "original_claims": {
+    "V1": "C1",
+    "P1": "C2"
+  }
+}

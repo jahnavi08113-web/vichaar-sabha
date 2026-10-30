@@ -1,0 +1,566 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "case": {
+      "type": "object",
+      "required": [
+        "id",
+        "title",
+        "brief",
+        "goal"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "number": {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 30
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "brief": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1200
+        },
+        "goal": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "goal_type": {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 40
+        },
+        "location": {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 150
+        },
+        "constraints": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 300
+          },
+          "minItems": 0,
+          "maxItems": 10
+        },
+        "alternatives": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 300
+          },
+          "minItems": 0,
+          "maxItems": 10
+        },
+        "unknowns": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 300
+          },
+          "minItems": 0,
+          "maxItems": 10
+        },
+        "exhibits": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "title"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 0,
+                "maxLength": 120
+              },
+              "title": {
+                "type": "string",
+                "minLength": 0,
+                "maxLength": 500
+              },
+              "kind": {
+                "type": "string",
+                "minLength": 0,
+                "maxLength": 50
+              },
+              "detail": {
+                "type": "string",
+                "minLength": 0,
+                "maxLength": 4000
+              },
+              "text": {
+                "type": "string",
+                "minLength": 0,
+                "maxLength": 4000
+              },
+              "url": {
+                "type": "string",
+                "minLength": 0,
+                "maxLength": 1200
+              }
+            }
+          },
+          "minItems": 0,
+          "maxItems": 10
+        }
+      }
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^C[1-9][0-9]?$"
+          },
+          "side": {
+            "enum": [
+              "A",
+              "B"
+            ]
+          },
+          "area": {
+            "enum": [
+              "demand",
+              "feasibility",
+              "viability",
+              "risk",
+              "goal_fit"
+            ]
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 600
+          },
+          "basis": {
+            "enum": [
+              "evidence",
+              "assumption"
+            ]
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^E[1-9][0-9]?$"
+            },
+            "minItems": 0,
+            "maxItems": 16
+          },
+          "confidence": {
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "critical": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "side",
+          "area",
+          "text",
+          "basis",
+          "evidence",
+          "confidence",
+          "critical"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 2,
+      "maxItems": 24
+    },
+    "sides": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "enum": [
+              "A",
+              "B"
+            ]
+          },
+          "framing": {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 500
+          },
+          "statement": {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 1000
+          },
+          "claim_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^C[1-9][0-9]?$"
+            },
+            "minItems": 1,
+            "maxItems": 24
+          },
+          "assumptions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 300
+            },
+            "minItems": 0,
+            "maxItems": 8
+          },
+          "outside_view": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 300
+            },
+            "minItems": 0,
+            "maxItems": 6
+          },
+          "concession": {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 500
+          },
+          "contrary_evidence": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^E[1-9][0-9]?$"
+            },
+            "minItems": 0,
+            "maxItems": 16
+          },
+          "proving_test": {
+            "type": "object"
+          },
+          "coverage": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "demand": {
+                "enum": [
+                  "covered",
+                  "unknown",
+                  "not_applicable"
+                ]
+              },
+              "feasibility": {
+                "enum": [
+                  "covered",
+                  "unknown",
+                  "not_applicable"
+                ]
+              },
+              "viability": {
+                "enum": [
+                  "covered",
+                  "unknown",
+                  "not_applicable"
+                ]
+              },
+              "risk": {
+                "enum": [
+                  "covered",
+                  "unknown",
+                  "not_applicable"
+                ]
+              },
+              "goal_fit": {
+                "enum": [
+                  "covered",
+                  "unknown",
+                  "not_applicable"
+                ]
+              }
+            }
+          }
+        },
+        "required": [
+          "id",
+          "framing",
+          "statement",
+          "claim_ids",
+          "assumptions",
+          "outside_view",
+          "concession",
+          "contrary_evidence",
+          "proving_test",
+          "coverage"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^E[1-9][0-9]?$"
+          },
+          "source_type": {
+            "enum": [
+              "case",
+              "exhibit",
+              "web",
+              "user"
+            ]
+          },
+          "source": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 160
+          },
+          "quote": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 300
+          },
+          "strength": {
+            "enum": [
+              "behavior",
+              "data",
+              "opinion",
+              "assertion"
+            ]
+          },
+          "stance": {
+            "enum": [
+              "for",
+              "against",
+              "mixed",
+              "context"
+            ]
+          },
+          "verified": {
+            "type": "boolean"
+          },
+          "verification": {
+            "enum": [
+              "exact",
+              "normalized",
+              "not_found",
+              "no_source_text"
+            ]
+          },
+          "url": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1200
+          },
+          "note": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 300
+          },
+          "sample_size": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "original_strength": {
+            "enum": [
+              "behavior",
+              "data",
+              "opinion",
+              "assertion"
+            ]
+          },
+          "cap_reason": {
+            "enum": [
+              "unverified",
+              "small_sample"
+            ]
+          },
+          "same_quote_as": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^E[1-9][0-9]?$"
+            },
+            "minItems": 0,
+            "maxItems": 16
+          },
+          "supports_area": {
+            "enum": [
+              "demand",
+              "feasibility",
+              "viability",
+              "risk",
+              "goal_fit"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "source_type",
+          "source",
+          "quote",
+          "strength",
+          "stance",
+          "verified",
+          "verification"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 0,
+      "maxItems": 16
+    },
+    "control": {
+      "type": "object",
+      "properties": {
+        "phase": {
+          "enum": [
+            "initial",
+            "final"
+          ]
+        },
+        "clarification_rounds_used": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "can_clarify": {
+          "type": "boolean"
+        },
+        "budget_allows_clarification": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "phase",
+        "clarification_rounds_used",
+        "can_clarify",
+        "budget_allows_clarification"
+      ],
+      "additionalProperties": false
+    },
+    "clarification_request": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "target_claim": {
+              "type": "string",
+              "pattern": "^C[1-9][0-9]?$"
+            },
+            "question": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 240
+            },
+            "existing_evidence": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^E[1-9][0-9]?$"
+              },
+              "minItems": 1,
+              "maxItems": 16
+            }
+          },
+          "required": [
+            "target_claim",
+            "question",
+            "existing_evidence"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "clarifications": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "side": {
+            "enum": [
+              "A",
+              "B"
+            ]
+          },
+          "target_claim": {
+            "type": "string",
+            "pattern": "^C[1-9][0-9]?$"
+          },
+          "answer": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^E[1-9][0-9]?$"
+            },
+            "minItems": 0,
+            "maxItems": 16
+          },
+          "unknown": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "side",
+          "target_claim",
+          "answer",
+          "evidence",
+          "unknown"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 0,
+      "maxItems": 2
+    }
+  },
+  "required": [
+    "schema_version",
+    "case",
+    "claims",
+    "sides",
+    "evidence",
+    "control",
+    "clarification_request",
+    "clarifications"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "vichaar-sabha/judge-packet",
+  "title": "Blinded Judge packet v1"
+}

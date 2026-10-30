@@ -1,0 +1,22 @@
+{
+  "skill_version": "1.0.0",
+  "checked_on": "2026-10-30",
+  "offline_tests": {
+    "command": "bash tests/run_tests.sh",
+    "count": 60,
+    "status": "passed"
+  },
+  "standalone_cli_checks": [
+    "build initial packet",
+    "render initial prompt",
+    "validate continue decision",
+    "build Paksh clarification context",
+    "build Vipaksh clarification context",
+    "render final prompt"
+  ],
+  "all_json_parsed": true,
+  "all_python_syntax_checked": true,
+  "live_model_audit": "not_run",
+  "external_repositories_executed": false,
+  "provider_engine_installed_by_this_package": false
+}

@@ -1,0 +1,74 @@
+{
+  "case": {
+    "id": "fee-blocker",
+    "title": "Fee Blocker",
+    "brief": "Use a facility only after paying its mandatory access fee.",
+    "goal": "Run a session within a hard total budget of 100.",
+    "goal_type": "community",
+    "exhibits": [
+      {
+        "id": "x1",
+        "kind": "note",
+        "title": "The required non-refundable access fee is 200. The total available budget is 100.",
+        "detail": "User supplied; source accuracy is not independently authenticated."
+      }
+    ]
+  },
+  "ledger": {
+    "owner": "merged",
+    "items": [
+      {
+        "id": "PE1",
+        "source_type": "exhibit",
+        "source": "x1",
+        "quote": "The required non-refundable access fee is 200. The total available budget is 100.",
+        "strength": "data",
+        "stance": "context"
+      }
+    ]
+  },
+  "openings": {
+    "paksh": {
+      "mode": "opening",
+      "framing": "Consider a small reversible next step.",
+      "claims": [
+        {
+          "id": "P1",
+          "area": "feasibility",
+          "text": "The current facility plan fits the stated budget.",
+          "basis": "evidence",
+          "evidence": [
+            "PE1"
+          ],
+          "confidence": "low"
+        }
+      ],
+      "assumptions": [
+        "A small pilot would fit the goal."
+      ],
+      "concession": "Demand beyond this scope is not established.",
+      "statement": "Paksh supports a bounded experiment, not a full product."
+    },
+    "vipaksh": {
+      "mode": "opening",
+      "claims": [
+        {
+          "id": "V1",
+          "area": "demand",
+          "text": "The mandatory fee exceeds the hard budget.",
+          "evidence": [
+            "PE1"
+          ]
+        }
+      ],
+      "statement": "Vipaksh challenges the load-bearing assumption.",
+      "concession": "A narrower experiment may still be useful."
+    }
+  },
+  "control": {
+    "phase": "initial",
+    "clarification_rounds_used": 0,
+    "can_clarify": true,
+    "budget_allows_clarification": true
+  }
+}

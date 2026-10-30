@@ -1,0 +1,52 @@
+{
+  "version": "1.0.0",
+  "temperature": {
+    "initial": 0.1,
+    "final": 0.1
+  },
+  "generation": {
+    "max_output_tokens": 2400,
+    "repair_max_output_tokens": 2400
+  },
+  "limits": {
+    "max_clarification_rounds": 1,
+    "max_repairs_per_user_action": 1,
+    "hearing_token_budget": 8000,
+    "max_claims": 24,
+    "max_evidence": 16,
+    "max_packet_chars": 48000
+  },
+  "evidence": {
+    "require_verification": true,
+    "small_sample_threshold": 20,
+    "unverified_strength": "assertion",
+    "small_sample_max_strength": "opinion",
+    "max_quote_chars": 300
+  },
+  "rules": {
+    "no_success_probability": true,
+    "no_total_score": true,
+    "no_live_search": true,
+    "no_automatic_updates": true,
+    "banned_phrases": [
+      "guaranteed success",
+      "perfectly unbiased",
+      "consensus proves",
+      "agreement proves",
+      "validated business success"
+    ]
+  },
+  "bias_audit": {
+    "production_swap_call": false,
+    "evaluation_only": [
+      "order_swap",
+      "verbosity_padding",
+      "identity_metadata",
+      "consensus_without_evidence",
+      "injection",
+      "goal_fit",
+      "missing_vs_negative",
+      "real_blocker"
+    ]
+  }
+}

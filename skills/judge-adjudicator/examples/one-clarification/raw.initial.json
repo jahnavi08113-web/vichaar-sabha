@@ -1,0 +1,74 @@
+{
+  "case": {
+    "id": "roster-ambiguity",
+    "title": "Roster Ambiguity",
+    "brief": "Test whether a small peer-learning group can support repeat sessions.",
+    "goal": "A low-risk community pilot.",
+    "goal_type": "community",
+    "exhibits": [
+      {
+        "id": "x1",
+        "kind": "note",
+        "title": "Roster: a,b,c,d,e,f. Attendance: a,b,c,d,e,f,a,b,c,d,e,f.",
+        "detail": "User supplied; source accuracy is not independently authenticated."
+      }
+    ]
+  },
+  "ledger": {
+    "owner": "merged",
+    "items": [
+      {
+        "id": "PE1",
+        "source_type": "exhibit",
+        "source": "x1",
+        "quote": "Roster: a,b,c,d,e,f. Attendance: a,b,c,d,e,f,a,b,c,d,e,f.",
+        "strength": "data",
+        "stance": "context"
+      }
+    ]
+  },
+  "openings": {
+    "paksh": {
+      "mode": "opening",
+      "framing": "Consider a small reversible next step.",
+      "claims": [
+        {
+          "id": "P1",
+          "area": "feasibility",
+          "text": "The group can host another bounded session.",
+          "basis": "evidence",
+          "evidence": [
+            "PE1"
+          ],
+          "confidence": "low"
+        }
+      ],
+      "assumptions": [
+        "A small pilot would fit the goal."
+      ],
+      "concession": "Demand beyond this scope is not established.",
+      "statement": "Paksh supports a bounded experiment, not a full product."
+    },
+    "vipaksh": {
+      "mode": "opening",
+      "claims": [
+        {
+          "id": "V1",
+          "area": "demand",
+          "text": "The 12 attendance entries may be 12 distinct participants.",
+          "evidence": [
+            "PE1"
+          ]
+        }
+      ],
+      "statement": "Vipaksh challenges the load-bearing assumption.",
+      "concession": "A narrower experiment may still be useful."
+    }
+  },
+  "control": {
+    "phase": "initial",
+    "clarification_rounds_used": 0,
+    "can_clarify": true,
+    "budget_allows_clarification": true
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "schema_version": "1.0.0",
+  "mode": "final",
+  "continue": false,
+  "reason_code": "round_limit",
+  "summary": "Six distinct participants appear twice; repeat attendance is narrower than proof of broader demand.",
+  "claim_reviews": [
+    {
+      "claim_id": "C1",
+      "finding": "contradicted",
+      "supports": [],
+      "opposes": [
+        "E1"
+      ],
+      "reason": "The roster has six distinct identifiers, each repeated twice.",
+      "material": true
+    },
+    {
+      "claim_id": "C2",
+      "finding": "unresolved",
+      "supports": [],
+      "opposes": [],
+      "reason": "The supplied record does not settle this inference.",
+      "material": true
+    }
+  ],
+  "rubric": {
+    "demand": {
+      "score": null,
+      "reason": "Not established for the proposed scope.",
+      "claim_ids": [
+        "C1"
+      ]
+    },
+    "feasibility": {
+      "score": null,
+      "reason": "Not established for the proposed scope.",
+      "claim_ids": [
+        "C2"
+      ]
+    },
+    "viability": {
+      "score": null,
+      "reason": "Not established for the proposed scope.",
+      "claim_ids": [
+        "C1"
+      ]
+    },
+    "risk": {
+      "score": null,
+      "reason": "Not established for the proposed scope.",
+      "claim_ids": [
+        "C1"
+      ]
+    },
+    "goal_fit": {
+      "score": null,
+      "reason": "Not established for the proposed scope.",
+      "claim_ids": [
+        "C2"
+      ]
+    }
+  },
+  "decisive_claims": [
+    "C1"
+  ],
+  "strongest_objection": {
+    "claim_id": "C1",
+    "summary": "The observation does not prove repeat demand or wider success.",
+    "evidence": [
+      "E1"
+    ]
+  },
+  "unknowns": [
+    {
+      "question": "Will the intended users complete and return for sessions?",
+      "claim_ids": [
+        "C1"
+      ],
+      "evidence_needed": "Observed participation and follow-up for the relevant user group."
+    }
+  ],
+  "blocking_risks": [],
+  "clarification": null,
+  "verdict": {
+    "label": "test_first",
+    "scope": "One opt-in, manual, permission-based session; do not build the full platform yet.",
+    "reason": "Use a reversible test rather than treating intentions as observed demand.",
+    "conditions": [
+      "Confirm permission, a small spend cap and opt-out before starting."
+    ],
+    "experiment": {
+      "action": "Run one opt-in matching session and record completed matches and follow-up.",
+      "metric": "Completed sessions and voluntary repeat requests.",
+      "proposed_success": "Proposed: at least 5 completed sessions and 2 repeat requests; confirm before testing.",
+      "proposed_stop": "Proposed: stop for a safety complaint or if no match completes.",
+      "timebox": "Two weeks; proposed.",
+      "requires_user_confirmation": true,
+      "tests_claims": [
+        "C1"
+      ]
+    },
+    "change_if": [
+      "Relevant observed demand and manageable delivery costs support a larger pilot."
+    ]
+  }
+}

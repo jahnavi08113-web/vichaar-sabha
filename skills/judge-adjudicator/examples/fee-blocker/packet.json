@@ -1,0 +1,96 @@
+{
+  "schema_version": "1.0.0",
+  "case": {
+    "id": "fee-blocker",
+    "title": "Fee Blocker",
+    "brief": "Use a facility only after paying its mandatory access fee.",
+    "goal": "Run a session within a hard total budget of 100.",
+    "goal_type": "community",
+    "exhibits": [
+      {
+        "id": "x1",
+        "kind": "note",
+        "title": "The required non-refundable access fee is 200. The total available budget is 100.",
+        "detail": "User supplied; source accuracy is not independently authenticated."
+      }
+    ]
+  },
+  "claims": [
+    {
+      "id": "C1",
+      "side": "A",
+      "area": "demand",
+      "text": "The mandatory fee exceeds the hard budget.",
+      "basis": "evidence",
+      "evidence": [
+        "E1"
+      ],
+      "confidence": "low",
+      "critical": false
+    },
+    {
+      "id": "C2",
+      "side": "B",
+      "area": "feasibility",
+      "text": "The current facility plan fits the stated budget.",
+      "basis": "evidence",
+      "evidence": [
+        "E1"
+      ],
+      "confidence": "low",
+      "critical": false
+    }
+  ],
+  "sides": [
+    {
+      "id": "A",
+      "framing": "",
+      "statement": "Side A challenges the load-bearing assumption.",
+      "claim_ids": [
+        "C1"
+      ],
+      "assumptions": [],
+      "outside_view": [],
+      "concession": "A narrower experiment may still be useful.",
+      "contrary_evidence": [],
+      "proving_test": {},
+      "coverage": {}
+    },
+    {
+      "id": "B",
+      "framing": "Consider a small reversible next step.",
+      "statement": "Side B supports a bounded experiment, not a full product.",
+      "claim_ids": [
+        "C2"
+      ],
+      "assumptions": [
+        "A small pilot would fit the goal."
+      ],
+      "outside_view": [],
+      "concession": "Demand beyond this scope is not established.",
+      "contrary_evidence": [],
+      "proving_test": {},
+      "coverage": {}
+    }
+  ],
+  "evidence": [
+    {
+      "source_type": "exhibit",
+      "source": "x1",
+      "quote": "The required non-refundable access fee is 200. The total available budget is 100.",
+      "strength": "data",
+      "stance": "context",
+      "id": "E1",
+      "verified": true,
+      "verification": "exact"
+    }
+  ],
+  "control": {
+    "phase": "initial",
+    "clarification_rounds_used": 0,
+    "can_clarify": true,
+    "budget_allows_clarification": true
+  },
+  "clarification_request": null,
+  "clarifications": []
+}

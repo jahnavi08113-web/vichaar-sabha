@@ -1,0 +1,602 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "mode": {
+      "enum": [
+        "initial",
+        "final"
+      ]
+    },
+    "continue": {
+      "type": "boolean"
+    },
+    "reason_code": {
+      "enum": [
+        "clarification_needed",
+        "decision_ready",
+        "external_evidence_needed",
+        "round_limit",
+        "budget_limit",
+        "clarification_inconclusive"
+      ]
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 450
+    },
+    "claim_reviews": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "claim_id": {
+            "type": "string",
+            "pattern": "^C[1-9][0-9]?$"
+          },
+          "finding": {
+            "enum": [
+              "supported",
+              "partial",
+              "unsupported",
+              "contradicted",
+              "unresolved"
+            ]
+          },
+          "supports": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^E[1-9][0-9]?$"
+            },
+            "minItems": 0,
+            "maxItems": 16
+          },
+          "opposes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^E[1-9][0-9]?$"
+            },
+            "minItems": 0,
+            "maxItems": 16
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 240
+          },
+          "material": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "claim_id",
+          "finding",
+          "supports",
+          "opposes",
+          "reason",
+          "material"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1,
+      "maxItems": 24
+    },
+    "rubric": {
+      "type": "object",
+      "properties": {
+        "demand": {
+          "type": "object",
+          "properties": {
+            "score": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 2
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "claim_ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^C[1-9][0-9]?$"
+              },
+              "minItems": 0,
+              "maxItems": 24
+            }
+          },
+          "required": [
+            "score",
+            "reason",
+            "claim_ids"
+          ],
+          "additionalProperties": false
+        },
+        "feasibility": {
+          "type": "object",
+          "properties": {
+            "score": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 2
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "claim_ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^C[1-9][0-9]?$"
+              },
+              "minItems": 0,
+              "maxItems": 24
+            }
+          },
+          "required": [
+            "score",
+            "reason",
+            "claim_ids"
+          ],
+          "additionalProperties": false
+        },
+        "viability": {
+          "type": "object",
+          "properties": {
+            "score": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 2
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "claim_ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^C[1-9][0-9]?$"
+              },
+              "minItems": 0,
+              "maxItems": 24
+            }
+          },
+          "required": [
+            "score",
+            "reason",
+            "claim_ids"
+          ],
+          "additionalProperties": false
+        },
+        "risk": {
+          "type": "object",
+          "properties": {
+            "score": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 2
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "claim_ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^C[1-9][0-9]?$"
+              },
+              "minItems": 0,
+              "maxItems": 24
+            }
+          },
+          "required": [
+            "score",
+            "reason",
+            "claim_ids"
+          ],
+          "additionalProperties": false
+        },
+        "goal_fit": {
+          "type": "object",
+          "properties": {
+            "score": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 2
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "claim_ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^C[1-9][0-9]?$"
+              },
+              "minItems": 0,
+              "maxItems": 24
+            }
+          },
+          "required": [
+            "score",
+            "reason",
+            "claim_ids"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "demand",
+        "feasibility",
+        "viability",
+        "risk",
+        "goal_fit"
+      ],
+      "additionalProperties": false
+    },
+    "decisive_claims": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^C[1-9][0-9]?$"
+      },
+      "minItems": 1,
+      "maxItems": 24
+    },
+    "strongest_objection": {
+      "type": "object",
+      "properties": {
+        "claim_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^C[1-9][0-9]?$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^E[1-9][0-9]?$"
+          },
+          "minItems": 0,
+          "maxItems": 16
+        }
+      },
+      "required": [
+        "claim_id",
+        "summary",
+        "evidence"
+      ],
+      "additionalProperties": false
+    },
+    "unknowns": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "question": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 220
+          },
+          "claim_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^C[1-9][0-9]?$"
+            },
+            "minItems": 0,
+            "maxItems": 24
+          },
+          "evidence_needed": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 220
+          }
+        },
+        "required": [
+          "question",
+          "claim_ids",
+          "evidence_needed"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 0,
+      "maxItems": 6
+    },
+    "blocking_risks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "claim_id": {
+            "type": "string",
+            "pattern": "^C[1-9][0-9]?$"
+          },
+          "status": {
+            "enum": [
+              "confirmed",
+              "unresolved"
+            ]
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 240
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^E[1-9][0-9]?$"
+            },
+            "minItems": 0,
+            "maxItems": 16
+          }
+        },
+        "required": [
+          "claim_id",
+          "status",
+          "reason",
+          "evidence"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 0,
+      "maxItems": 8
+    },
+    "clarification": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "target_claim": {
+              "type": "string",
+              "pattern": "^C[1-9][0-9]?$"
+            },
+            "question": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 240
+            },
+            "existing_evidence": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^E[1-9][0-9]?$"
+              },
+              "minItems": 1,
+              "maxItems": 16
+            },
+            "why_material": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 240
+            },
+            "if_answer_a": {
+              "enum": [
+                "approved_pilot",
+                "test_first",
+                "revise",
+                "insufficient_evidence",
+                "not_recommended"
+              ]
+            },
+            "if_answer_b": {
+              "enum": [
+                "approved_pilot",
+                "test_first",
+                "revise",
+                "insufficient_evidence",
+                "not_recommended"
+              ]
+            }
+          },
+          "required": [
+            "target_claim",
+            "question",
+            "existing_evidence",
+            "why_material",
+            "if_answer_a",
+            "if_answer_b"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "verdict": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "label": {
+              "enum": [
+                "approved_pilot",
+                "test_first",
+                "revise",
+                "insufficient_evidence",
+                "not_recommended"
+              ]
+            },
+            "scope": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 300
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 400
+            },
+            "conditions": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 180
+              },
+              "minItems": 1,
+              "maxItems": 5
+            },
+            "experiment": {
+              "type": "object",
+              "properties": {
+                "action": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 300
+                },
+                "metric": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 150
+                },
+                "proposed_success": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 180
+                },
+                "proposed_stop": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 180
+                },
+                "timebox": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 80
+                },
+                "requires_user_confirmation": {
+                  "const": true
+                },
+                "tests_claims": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^C[1-9][0-9]?$"
+                  },
+                  "minItems": 1,
+                  "maxItems": 24
+                }
+              },
+              "required": [
+                "action",
+                "metric",
+                "proposed_success",
+                "proposed_stop",
+                "timebox",
+                "requires_user_confirmation",
+                "tests_claims"
+              ],
+              "additionalProperties": false
+            },
+            "change_if": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 180
+              },
+              "minItems": 1,
+              "maxItems": 4
+            }
+          },
+          "required": [
+            "label",
+            "scope",
+            "reason",
+            "conditions",
+            "experiment",
+            "change_if"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "mode",
+    "continue",
+    "reason_code",
+    "summary",
+    "claim_reviews",
+    "rubric",
+    "decisive_claims",
+    "strongest_objection",
+    "unknowns",
+    "blocking_risks",
+    "clarification",
+    "verdict"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "vichaar-sabha/judge-decision",
+  "title": "Judge decision v1"
+}

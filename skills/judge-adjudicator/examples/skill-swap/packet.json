@@ -1,0 +1,191 @@
+{
+  "schema_version": "1.0.0",
+  "case": {
+    "id": "swap",
+    "number": "016",
+    "title": "Skill swap",
+    "brief": "Students trade short skill sessions — design for coding, music for maths — and learn from each other.",
+    "goal": "A student-community experiment",
+    "goal_type": "community",
+    "exhibits": [
+      {
+        "id": "swap-1",
+        "kind": "note",
+        "title": "Two clubs will share the invitation.",
+        "detail": "Reach is not the same as successful matches."
+      }
+    ]
+  },
+  "claims": [
+    {
+      "id": "C1",
+      "side": "A",
+      "area": "demand",
+      "text": "Exact two-way matches are rare: most students want coding help, few want what is offered in return.",
+      "basis": "evidence",
+      "evidence": [
+        "E5"
+      ],
+      "confidence": "low",
+      "critical": false
+    },
+    {
+      "id": "C2",
+      "side": "A",
+      "area": "risk",
+      "text": "Popular helpers will be overloaded and stop coming back.",
+      "basis": "assumption",
+      "evidence": [],
+      "confidence": "low",
+      "critical": false
+    },
+    {
+      "id": "C3",
+      "side": "B",
+      "area": "demand",
+      "text": "Some students with a live project need would give an hour of their own skill in return for help.",
+      "basis": "assumption",
+      "evidence": [],
+      "confidence": "low",
+      "critical": false
+    },
+    {
+      "id": "C4",
+      "side": "B",
+      "area": "feasibility",
+      "text": "Two clubs sharing the invitation gives enough reach to hand-match a first small group without building an app.",
+      "basis": "evidence",
+      "evidence": [
+        "E3"
+      ],
+      "confidence": "medium",
+      "critical": false
+    },
+    {
+      "id": "C5",
+      "side": "B",
+      "area": "goal_fit",
+      "text": "A hand-run trial is a cheap, reversible community experiment, which is what the goal asks for.",
+      "basis": "evidence",
+      "evidence": [
+        "E1"
+      ],
+      "confidence": "low",
+      "critical": false
+    }
+  ],
+  "sides": [
+    {
+      "id": "A",
+      "framing": "",
+      "statement": "Swaps need two people who want exactly each other's skills at the same time. That double match is rare.",
+      "claim_ids": [
+        "C1",
+        "C2"
+      ],
+      "assumptions": [],
+      "outside_view": [],
+      "concession": "",
+      "contrary_evidence": [],
+      "proving_test": {},
+      "coverage": {}
+    },
+    {
+      "id": "B",
+      "framing": "A hand-run skill swap inside one club, for students with a live project need who can give one skill back later, not necessarily to the same person.",
+      "statement": "Every campus has people who can teach something and want to learn something else. Start small: one club, matches made by hand, help that can be paid forward. The clubs can reach people; what we don't know is whether pairs actually meet. So make ten matches and count the sessions that happen.",
+      "claim_ids": [
+        "C3",
+        "C4",
+        "C5"
+      ],
+      "assumptions": [
+        "Students attend sessions they sign up for.",
+        "Helpers accept one-way help at first."
+      ],
+      "outside_view": [
+        "Peer tutoring: help is wanted, helpers are scarce.",
+        "Time banks: early enthusiasm, then drop-off."
+      ],
+      "concession": "Club reach shows distribution, not demand. Nothing on record shows a matched pair meeting yet.",
+      "contrary_evidence": [
+        "E2"
+      ],
+      "proving_test": {
+        "action": "Collect one skill to offer and one goal from each participant in one club; hand-match ten pairs.",
+        "metric": "Pairs completing at least one session; helpers saying they would help again",
+        "success_threshold": "At least 6 of 10 pairs complete a session",
+        "timebox": "3 weeks",
+        "tests_claim": "C3"
+      },
+      "coverage": {}
+    }
+  ],
+  "evidence": [
+    {
+      "source_type": "case",
+      "source": "case.goal",
+      "quote": "A student-community experiment",
+      "strength": "assertion",
+      "stance": "context",
+      "supports_area": "goal_fit",
+      "id": "E1",
+      "verified": true,
+      "verification": "exact"
+    },
+    {
+      "source_type": "exhibit",
+      "source": "swap-1",
+      "quote": "Reach is not the same as successful matches.",
+      "strength": "assertion",
+      "stance": "against",
+      "supports_area": "demand",
+      "id": "E2",
+      "verified": true,
+      "verification": "exact"
+    },
+    {
+      "source_type": "exhibit",
+      "source": "swap-1",
+      "quote": "Two clubs will share the invitation.",
+      "strength": "opinion",
+      "stance": "for",
+      "note": "Stated commitment to share; reach, not sign-ups.",
+      "supports_area": "feasibility",
+      "id": "E3",
+      "verified": true,
+      "verification": "exact"
+    },
+    {
+      "source_type": "case",
+      "source": "case.brief",
+      "quote": "Students trade short skill sessions - design for coding, music for maths - and learn from each other.",
+      "strength": "assertion",
+      "stance": "context",
+      "supports_area": "feasibility",
+      "id": "E4",
+      "verified": true,
+      "verification": "normalized"
+    },
+    {
+      "source_type": "case",
+      "source": "case.brief",
+      "quote": "Students trade short skill sessions",
+      "strength": "assertion",
+      "stance": "mixed",
+      "note": "The model assumes two-way demand at the same time.",
+      "supports_area": "demand",
+      "id": "E5",
+      "verified": true,
+      "verification": "exact"
+    }
+  ],
+  "control": {
+    "phase": "initial",
+    "clarification_rounds_used": 0,
+    "can_clarify": true,
+    "budget_allows_clarification": true
+  },
+  "clarification_request": null,
+  "clarifications": []
+}

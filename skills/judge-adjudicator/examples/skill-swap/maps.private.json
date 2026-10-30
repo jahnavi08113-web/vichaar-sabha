@@ -1,0 +1,50 @@
+{
+  "sides": {
+    "vipaksh": "A",
+    "paksh": "B"
+  },
+  "claims": {
+    "C1": {
+      "role": "vipaksh",
+      "id": "V1"
+    },
+    "C2": {
+      "role": "vipaksh",
+      "id": "V2"
+    },
+    "C3": {
+      "role": "paksh",
+      "id": "P1"
+    },
+    "C4": {
+      "role": "paksh",
+      "id": "P2"
+    },
+    "C5": {
+      "role": "paksh",
+      "id": "P3"
+    }
+  },
+  "evidence": {
+    "E1": "PE4",
+    "E2": "PE2",
+    "E3": "PE1",
+    "E4": "PE3",
+    "E5": "VE2"
+  },
+  "evidence_aliases": {
+    "PE4": "E1",
+    "PE2": "E2",
+    "VE1": "E2",
+    "PE1": "E3",
+    "PE3": "E4",
+    "VE2": "E5"
+  },
+  "original_claims": {
+    "V1": "C1",
+    "V2": "C2",
+    "P1": "C3",
+    "P2": "C4",
+    "P3": "C5"
+  }
+}

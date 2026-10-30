@@ -1,0 +1,118 @@
+{
+  "schema_version": "1.0.0",
+  "mode": "initial",
+  "continue": false,
+  "reason_code": "decision_ready",
+  "summary": "Do not use this facility under the current hard budget.",
+  "claim_reviews": [
+    {
+      "claim_id": "C1",
+      "finding": "supported",
+      "supports": [
+        "E1"
+      ],
+      "opposes": [],
+      "reason": "The supplied fee is 200 against a hard budget of 100.",
+      "material": true
+    },
+    {
+      "claim_id": "C2",
+      "finding": "contradicted",
+      "supports": [],
+      "opposes": [
+        "E1"
+      ],
+      "reason": "The supplied fee is 200 against a hard budget of 100.",
+      "material": true
+    }
+  ],
+  "rubric": {
+    "demand": {
+      "score": null,
+      "reason": "Not established for the proposed scope.",
+      "claim_ids": [
+        "C1"
+      ]
+    },
+    "feasibility": {
+      "score": null,
+      "reason": "Not established for the proposed scope.",
+      "claim_ids": [
+        "C2"
+      ]
+    },
+    "viability": {
+      "score": 0,
+      "reason": "The mandatory non-refundable fee exceeds the hard budget.",
+      "claim_ids": [
+        "C1"
+      ]
+    },
+    "risk": {
+      "score": null,
+      "reason": "Not established for the proposed scope.",
+      "claim_ids": [
+        "C1"
+      ]
+    },
+    "goal_fit": {
+      "score": null,
+      "reason": "Not established for the proposed scope.",
+      "claim_ids": [
+        "C2"
+      ]
+    }
+  },
+  "decisive_claims": [
+    "C1"
+  ],
+  "strongest_objection": {
+    "claim_id": "C1",
+    "summary": "The observation does not prove repeat demand or wider success.",
+    "evidence": [
+      "E1"
+    ]
+  },
+  "unknowns": [
+    {
+      "question": "Will the intended users complete and return for sessions?",
+      "claim_ids": [
+        "C1"
+      ],
+      "evidence_needed": "Observed participation and follow-up for the relevant user group."
+    }
+  ],
+  "blocking_risks": [
+    {
+      "claim_id": "C1",
+      "status": "confirmed",
+      "reason": "The mandatory upfront fee exceeds the user-confirmed hard budget.",
+      "evidence": [
+        "E1"
+      ]
+    }
+  ],
+  "clarification": null,
+  "verdict": {
+    "label": "not_recommended",
+    "scope": "This facility plan under a hard total budget of 100.",
+    "reason": "The supplied mandatory fee exceeds the stated budget.",
+    "conditions": [
+      "Do not book or pay the current fee under this constraint."
+    ],
+    "experiment": {
+      "action": "Obtain a written quote for a permitted free or lower-cost venue before any booking.",
+      "metric": "Total unavoidable upfront cost.",
+      "proposed_success": "Proposed: a documented total cost no greater than 100.",
+      "proposed_stop": "Do not commit while the unavoidable cost exceeds 100.",
+      "timebox": "Before booking.",
+      "requires_user_confirmation": true,
+      "tests_claims": [
+        "C1"
+      ]
+    },
+    "change_if": [
+      "A verified lower-cost venue or an explicitly revised budget removes the blocker."
+    ]
+  }
+}

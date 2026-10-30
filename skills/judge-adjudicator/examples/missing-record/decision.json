@@ -1,0 +1,105 @@
+{
+  "schema_version": "1.0.0",
+  "mode": "initial",
+  "continue": false,
+  "reason_code": "external_evidence_needed",
+  "summary": "The record supports a limited next action; it does not establish product success.",
+  "claim_reviews": [
+    {
+      "claim_id": "C1",
+      "finding": "unresolved",
+      "supports": [],
+      "opposes": [],
+      "reason": "The supplied record does not settle this inference.",
+      "material": true
+    },
+    {
+      "claim_id": "C2",
+      "finding": "unresolved",
+      "supports": [],
+      "opposes": [],
+      "reason": "The supplied record does not settle this inference.",
+      "material": true
+    }
+  ],
+  "rubric": {
+    "demand": {
+      "score": null,
+      "reason": "Not established for the proposed scope.",
+      "claim_ids": [
+        "C1"
+      ]
+    },
+    "feasibility": {
+      "score": null,
+      "reason": "Not established for the proposed scope.",
+      "claim_ids": [
+        "C2"
+      ]
+    },
+    "viability": {
+      "score": null,
+      "reason": "Not established for the proposed scope.",
+      "claim_ids": [
+        "C1"
+      ]
+    },
+    "risk": {
+      "score": null,
+      "reason": "Not established for the proposed scope.",
+      "claim_ids": [
+        "C1"
+      ]
+    },
+    "goal_fit": {
+      "score": null,
+      "reason": "Not established for the proposed scope.",
+      "claim_ids": [
+        "C2"
+      ]
+    }
+  },
+  "decisive_claims": [
+    "C1"
+  ],
+  "strongest_objection": {
+    "claim_id": "C1",
+    "summary": "The observation does not prove repeat demand or wider success.",
+    "evidence": [
+      "E1"
+    ]
+  },
+  "unknowns": [
+    {
+      "question": "Will the intended users complete and return for sessions?",
+      "claim_ids": [
+        "C1"
+      ],
+      "evidence_needed": "Observed participation and follow-up for the relevant user group."
+    }
+  ],
+  "blocking_risks": [],
+  "clarification": null,
+  "verdict": {
+    "label": "insufficient_evidence",
+    "scope": "No commitment beyond clarifying the case and collecting evidence.",
+    "reason": "Use a reversible test rather than treating intentions as observed demand.",
+    "conditions": [
+      "Confirm permission, a small spend cap and opt-out before starting."
+    ],
+    "experiment": {
+      "action": "Define one target user and one concrete use case; collect relevant observations before planning a pilot.",
+      "metric": "Presence of a clear use case, delivery constraints and direct user observations.",
+      "proposed_success": "Proposed: a coherent, user-confirmed case with relevant evidence for one decision.",
+      "proposed_stop": "Do not spend or recruit participants while core scope and permissions remain unknown.",
+      "timebox": "Two weeks; proposed.",
+      "requires_user_confirmation": true,
+      "tests_claims": [
+        "C1"
+      ]
+    },
+    "change_if": [
+      "Relevant observed demand and manageable delivery costs support a larger pilot."
+    ]
+  }
+}
