@@ -19,7 +19,7 @@ loadEnvFile(path.join(root, '.env.local'));
 export const sessionToken = crypto.randomUUID();
 
 export const manager = new ConnectionManager({ fake: fakeMode });
-manager.initEnvironmentKeys();
+await manager.initEnvironmentKeys();
 
 await build();
 if (watch) {

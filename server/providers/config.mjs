@@ -150,6 +150,12 @@ export function mapProviderError(status, data, providerId, key = '') {
       message: 'The specified model was not found.',
     };
   }
+  if (status === 503) {
+    return {
+      code: 'unavailable',
+      message: rawMsg || 'The model is currently experiencing high demand. Please try again in a moment.',
+    };
+  }
   if (/quota|insufficient_quota|credit_limit/i.test(rawMsg)) {
     return {
       code: 'quota',

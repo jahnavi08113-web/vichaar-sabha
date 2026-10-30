@@ -43,7 +43,10 @@ export async function verify(key, { signal } = {}) {
 
 export async function generate({ key, model, system, messages, maxOutputTokens = 60, temperature, signal } = {}) {
   try {
-    const cleanModel = (model || '').replace(/^models\//, '');
+    let cleanModel = (model || '').replace(/^models\//, '');
+    if (cleanModel === 'gemini-flash-3.8') {
+      cleanModel = 'gemini-3.8-flash';
+    }
     const contents = (messages || []).map((m) => ({
       role: m.role === 'assistant' ? 'model' : 'user',
       parts: [{ text: m.content }],

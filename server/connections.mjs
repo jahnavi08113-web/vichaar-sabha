@@ -207,7 +207,10 @@ export class ConnectionManager {
       return { ok: false, error: { code: 'not_verified', message: 'Connection is not verified.' } };
     }
 
-    const cleanModel = (model || '').trim();
+    let cleanModel = (model || '').trim();
+    if (cleanModel === 'gemini-flash-3.8') {
+      cleanModel = 'gemini-3.8-flash';
+    }
     if (!cleanModel) {
       return { ok: false, error: { code: 'missing_model', message: 'Model is required.' } };
     }
@@ -224,7 +227,7 @@ export class ConnectionManager {
     }
   }
 
-  initEnvironmentKeys() {
+  async initEnvironmentKeys() {
     const envMap = {
       openai: process.env.OPENAI_API_KEY,
       anthropic: process.env.ANTHROPIC_API_KEY,
@@ -232,6 +235,8 @@ export class ConnectionManager {
       xai: process.env.XAI_API_KEY,
       groq: process.env.GROQ_API_KEY,
     };
+
+    const verifyPromises = [];
 
     for (const [provider, rawKey] of Object.entries(envMap)) {
       const key = (rawKey || '').trim();
@@ -254,8 +259,23 @@ export class ConnectionManager {
 
       this.connections.set(id, conn);
 
-      // Verify in background
-      this.verifyConnection(id).catch(() => {});
+      // Verify and auto-assign any configured roles
+      const p = this.verifyConnection(id).then((res) => {
+        for (const role of ['paksh', 'vipaksh', 'judge']) {
+          const connEnv = process.env[`${role.toUpperCase()}_CONNECTION`];
+          let modelEnv = process.env[`${role.toUpperCase()}_MODEL`];
+          if (connEnv === id && modelEnv && res.ok && res.connection?.status === 'verified') {
+            if (modelEnv === 'gemini-flash-3.8') modelEnv = 'gemini-3.8-flash';
+            this.roles[role] = { connectionId: id, model: modelEnv };
+          }
+        }
+        return res;
+      }).catch(() => {});
+
+      verifyPromises.push(p);
     }
+
+    await Promise.allSettled(verifyPromises);
+    return this.getConnections();
   }
 }
