@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "vichaar-sabha/paksh-clarify",
+  "title": "Paksh clarification",
+  "type": "object",
+  "required": ["mode", "target_claim", "answer", "evidence", "unknown", "confidence"],
+  "additionalProperties": false,
+  "properties": {
+    "mode": { "const": "clarify" },
+    "target_claim": { "type": "string", "pattern": "^P[1-9]$" },
+    "answer": { "type": "string", "minLength": 5, "maxLength": 450 },
+    "evidence": { "type": "array", "maxItems": 4, "items": { "type": "string", "pattern": "^(PE|VE)[1-9][0-9]?$" } },
+    "unknown": { "type": "boolean" },
+    "confidence": { "enum": ["low", "medium", "high"] },
+    "previous_confidence": { "enum": ["low", "medium", "high"] }
+  }
+}

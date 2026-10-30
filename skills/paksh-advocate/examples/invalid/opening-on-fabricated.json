@@ -1,0 +1,13 @@
+{
+  "mode": "opening",
+  "framing": "A hand-run skill swap inside one club for students with a live project need.",
+  "claims": [
+    { "id": "P1", "area": "demand", "text": "Forty students have already signed up, so demand is proven.", "basis": "evidence", "evidence": ["PE1"], "confidence": "high" },
+    { "id": "P2", "area": "viability", "text": "Classmates would pay for a session.", "basis": "evidence", "evidence": ["PE2"], "confidence": "high" }
+  ],
+  "assumptions": [],
+  "contrary_evidence": ["PE4"],
+  "concession": "Reach is not yet the same as completed sessions.",
+  "proving_test": { "action": "Hand-match ten pairs in one club.", "metric": "Completed sessions", "success_threshold": "6 of 10 pairs meet", "timebox": "3 weeks", "tests_claim": "P1" },
+  "statement": "Students are already signing up and would pay. Start with one club and count the sessions that happen."
+}

@@ -1,0 +1,23 @@
+{
+  "name": "vichaar-sabha-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Vichaar Sabha — an interactive courtroom for ideas (frontend demo, scripted hearings).",
+  "type": "module",
+  "scripts": {
+    "dev": "node server.mjs --watch",
+    "dev:fake": "node server.mjs --watch --fake",
+    "test": "node --test",
+    "test:skill": "node scripts/run-skill-tests.mjs",
+    "build": "node build.mjs",
+    "preview": "node server.mjs"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0"
+  },
+  "engines": { "node": ">=20" }
+}

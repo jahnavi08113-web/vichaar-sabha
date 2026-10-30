@@ -1,0 +1,9 @@
+{
+  "mode": "clarify",
+  "target_claim": "P2",
+  "answer": "Nothing on record yet. The clubs agreed to share the invitation, which is reach only; there are no sign-ups or sessions. Confidence lowered until the trial counts real matches.",
+  "evidence": ["PE1", "PE2"],
+  "unknown": true,
+  "confidence": "low",
+  "previous_confidence": "medium"
+}

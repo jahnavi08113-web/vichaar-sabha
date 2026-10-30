@@ -1,0 +1,12 @@
+{
+  "mode": "research_plan",
+  "assumptions": [
+    { "id": "A1", "area": "demand", "text": "Students with a live learning need will give some of their own time back.", "importance": "high", "current_evidence": "none" },
+    { "id": "A2", "area": "feasibility", "text": "Matching by hand inside one club can pair people within a week.", "importance": "medium", "current_evidence": "weak" }
+  ],
+  "queries": [
+    { "id": "Q1", "assumption": "A1", "query": "student peer skill exchange participation", "could_find_against": false },
+    { "id": "Q2", "assumption": "A1", "query": "time bank member dropout reasons", "could_find_against": true },
+    { "id": "Q3", "assumption": "A2", "query": "peer tutoring session no-show rates", "could_find_against": true }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "id": "swap",
+  "number": "016",
+  "title": "Skill swap",
+  "brief": "Students trade short skill sessions — design for coding, music for maths — and learn from each other.",
+  "goal": "A student-community experiment",
+  "goal_type": "community",
+  "exhibits": [
+    { "id": "swap-1", "kind": "note", "title": "Two clubs will share the invitation.", "detail": "Reach is not the same as successful matches." }
+  ]
+}

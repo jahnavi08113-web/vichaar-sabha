@@ -1,0 +1,9 @@
+{
+  "mode": "opening",
+  "role": "vipaksh",
+  "claims": [
+    { "id": "V1", "area": "demand", "text": "Exact two-way matches are rare: most students want coding help, few want what is offered in return.", "evidence": ["VE2"] },
+    { "id": "V2", "area": "risk", "text": "Popular helpers will be overloaded and stop coming back.", "evidence": [] }
+  ],
+  "statement": "Swaps need two people who want exactly each other's skills at the same time. That double match is rare."
+}

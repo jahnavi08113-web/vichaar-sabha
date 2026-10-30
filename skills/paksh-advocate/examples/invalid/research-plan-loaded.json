@@ -1,0 +1,8 @@
+{
+  "mode": "research_plan",
+  "assumptions": [ { "id": "A1", "area": "demand", "text": "Students want skill swaps.", "importance": "high", "current_evidence": "none" } ],
+  "queries": [
+    { "id": "Q1", "assumption": "A1", "query": "proof skill swaps are popular", "could_find_against": false },
+    { "id": "Q2", "assumption": "A1", "query": "why skill swaps succeed", "could_find_against": false }
+  ]
+}

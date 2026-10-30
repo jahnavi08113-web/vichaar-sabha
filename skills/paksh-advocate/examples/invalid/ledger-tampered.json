@@ -1,0 +1,8 @@
+{
+  "owner": "paksh",
+  "research_mode": "case",
+  "items": [
+    { "id": "PE1", "source_type": "exhibit", "source": "swap-1", "quote": "Forty students have already signed up.", "strength": "behavior", "stance": "for", "verified": false, "verification": "not_found" },
+    { "id": "PE2", "source_type": "user", "source": "answer-1", "quote": "5 of 5 classmates said they would pay for a session.", "strength": "data", "stance": "for", "sample_size": 5, "verified": true, "verification": "exact" }
+  ]
+}

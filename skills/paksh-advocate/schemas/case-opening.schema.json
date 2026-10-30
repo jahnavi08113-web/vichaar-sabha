@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "vichaar-sabha/case-opening",
+  "title": "Combined case-mode ledger and opening",
+  "type": "object",
+  "required": ["ledger", "opening"],
+  "additionalProperties": false,
+  "properties": {
+    "ledger": { "type": "object" },
+    "opening": { "type": "object" }
+  }
+}

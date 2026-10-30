@@ -1,0 +1,161 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "vichaar-sabha/evidence-ledger",
+  "title": "Evidence ledger",
+  "type": "object",
+  "required": [
+    "owner",
+    "items"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "owner": {
+      "enum": [
+        "paksh",
+        "vipaksh",
+        "merged"
+      ]
+    },
+    "research_mode": {
+      "enum": [
+        "off",
+        "case",
+        "web",
+        "mixed"
+      ]
+    },
+    "items": {
+      "type": "array",
+      "maxItems": 16,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "source_type",
+          "source",
+          "quote",
+          "strength",
+          "stance"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^(PE|VE)[1-9][0-9]?$"
+          },
+          "source_type": {
+            "enum": [
+              "case",
+              "exhibit",
+              "web",
+              "user"
+            ]
+          },
+          "source": {
+            "type": "string",
+            "maxLength": 160,
+            "description": "Canonical: exhibit id for exhibits; case.brief / case.goal / case.title for case; page title for web; answer key for user."
+          },
+          "url": {
+            "type": "string",
+            "pattern": "^https?://"
+          },
+          "quote": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 300
+          },
+          "strength": {
+            "enum": [
+              "behavior",
+              "data",
+              "opinion",
+              "assertion"
+            ]
+          },
+          "stance": {
+            "enum": [
+              "for",
+              "against",
+              "mixed",
+              "context"
+            ]
+          },
+          "supports_area": {
+            "enum": [
+              "demand",
+              "feasibility",
+              "viability",
+              "risk",
+              "goal_fit"
+            ]
+          },
+          "query_id": {
+            "type": "string",
+            "pattern": "^Q[1-9]$"
+          },
+          "note": {
+            "type": "string",
+            "maxLength": 160
+          },
+          "aliases": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^(PE|VE)[1-9][0-9]?$"
+            },
+            "description": "Exact duplicates merged into this item."
+          },
+          "sample_size": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "People/units behind a counted claim, if known."
+          },
+          "verified": {
+            "type": "boolean",
+            "description": "Set by scripts/verify_quotes.py, never by the model."
+          },
+          "verification": {
+            "enum": [
+              "exact",
+              "normalized",
+              "not_found",
+              "no_source_text"
+            ]
+          },
+          "original_strength": {
+            "enum": [
+              "behavior",
+              "data",
+              "opinion",
+              "assertion"
+            ]
+          },
+          "cap_reason": {
+            "enum": [
+              "unverified",
+              "small_sample"
+            ]
+          },
+          "same_quote_as": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^(PE|VE)[1-9][0-9]?$"
+            },
+            "description": "Same source and quote, rated differently. Left for the Judge."
+          }
+        }
+      }
+    },
+    "merged_from": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "paksh",
+          "vipaksh"
+        ]
+      }
+    }
+  }
+}

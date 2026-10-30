@@ -1,0 +1,8 @@
+{
+  "mode": "rebuttal",
+  "responses": [
+    { "target": "V1", "move": "narrow", "reason": "Right that exact two-way matches are rare, but the idea does not need them.", "named_flaw": "Assumes every exchange must be a simultaneous, same-person swap.", "evidence": ["VE2"], "affects_claim": "P1", "revised_claim": "Some students with a live need would give time back later, not necessarily to the same person." },
+    { "target": "V2", "move": "hold", "reason": "Helper overload is a real risk, but the proving test measures it directly by asking helpers whether they would help again.", "evidence": [] }
+  ],
+  "statement": "Then don't insist on a perfect swap. Match by hand through one club and let help be paid forward. If helpers burn out, the trial will show it, because we ask them after every session."
+}

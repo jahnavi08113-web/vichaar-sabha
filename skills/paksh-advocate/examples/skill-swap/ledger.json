@@ -1,0 +1,51 @@
+{
+  "owner": "paksh",
+  "research_mode": "case",
+  "items": [
+    {
+      "id": "PE1",
+      "source_type": "exhibit",
+      "source": "swap-1",
+      "quote": "Two clubs will share the invitation.",
+      "strength": "opinion",
+      "stance": "for",
+      "supports_area": "feasibility",
+      "note": "Stated commitment to share; reach, not sign-ups.",
+      "verified": true,
+      "verification": "exact"
+    },
+    {
+      "id": "PE2",
+      "source_type": "exhibit",
+      "source": "swap-1",
+      "quote": "Reach is not the same as successful matches.",
+      "strength": "assertion",
+      "stance": "against",
+      "supports_area": "demand",
+      "verified": true,
+      "verification": "exact"
+    },
+    {
+      "id": "PE3",
+      "source_type": "case",
+      "source": "case.brief",
+      "quote": "Students trade short skill sessions - design for coding, music for maths - and learn from each other.",
+      "strength": "assertion",
+      "stance": "context",
+      "supports_area": "feasibility",
+      "verified": true,
+      "verification": "normalized"
+    },
+    {
+      "id": "PE4",
+      "source_type": "case",
+      "source": "case.goal",
+      "quote": "A student-community experiment",
+      "strength": "assertion",
+      "stance": "context",
+      "supports_area": "goal_fit",
+      "verified": true,
+      "verification": "exact"
+    }
+  ]
+}

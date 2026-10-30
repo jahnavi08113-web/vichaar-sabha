@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "vichaar-sabha/paksh-rebuttal",
+  "title": "Paksh rebuttal",
+  "type": "object",
+  "required": ["mode", "responses", "statement"],
+  "additionalProperties": false,
+  "properties": {
+    "mode": { "const": "rebuttal" },
+    "responses": {
+      "type": "array", "minItems": 1, "maxItems": 3,
+      "items": {
+        "type": "object", "required": ["target", "move", "reason", "evidence"], "additionalProperties": false,
+        "properties": {
+          "target": { "type": "string", "pattern": "^V[1-9]$" },
+          "move": { "enum": ["hold", "counter", "narrow", "concede"] },
+          "reason": { "type": "string", "minLength": 5, "maxLength": 240 },
+          "named_flaw": { "type": "string", "maxLength": 160 },
+          "evidence": { "type": "array", "maxItems": 4, "items": { "type": "string", "pattern": "^(PE|VE)[1-9][0-9]?$" } },
+          "affects_claim": { "type": "string", "pattern": "^P[1-9]$" },
+          "revised_claim": { "type": "string", "maxLength": 220 }
+        }
+      }
+    },
+    "new_claims": {
+      "type": "array", "maxItems": 1,
+      "items": {
+        "type": "object", "required": ["id", "area", "text", "basis", "evidence", "confidence"], "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^P[1-9]$" },
+          "area": { "enum": ["demand", "feasibility", "viability", "risk", "goal_fit"] },
+          "text": { "type": "string", "maxLength": 220 },
+          "basis": { "const": "evidence" },
+          "evidence": { "type": "array", "minItems": 1, "items": { "type": "string", "pattern": "^(PE|VE)[1-9][0-9]?$" } },
+          "confidence": { "enum": ["low", "medium", "high"] }
+        }
+      }
+    },
+    "statement": { "type": "string", "minLength": 20, "maxLength": 550 }
+  }
+}

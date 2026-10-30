@@ -1,0 +1,87 @@
+{
+  "role": "paksh",
+  "version": "1.1.1",
+  "model": {
+    "provider": null,
+    "model": null,
+    "prefer_different_family_from": "vipaksh"
+  },
+  "temperature": {
+    "research_plan": 0.3,
+    "ledger": 0.2,
+    "opening": 0.6,
+    "clarify": 0.2,
+    "rebuttal": 0.3
+  },
+  "case_combined": {
+    "max_output_tokens": 1000
+  },
+  "research": {
+    "mode": "case",
+    "max_queries": 3,
+    "max_results_per_query": 3,
+    "max_excerpt_chars": 500,
+    "max_ledger_items": 8
+  },
+  "opening": {
+    "max_claims": 3,
+    "target_tokens": 450,
+    "max_output_tokens": 550,
+    "statement_max_words": 90
+  },
+  "clarify": {
+    "max_rounds": 1,
+    "max_output_tokens": 200,
+    "answer_max_words": 60
+  },
+  "rebuttal": {
+    "enabled": false,
+    "max_responses": 3,
+    "max_new_claims": 1,
+    "max_output_tokens": 300,
+    "statement_max_words": 70
+  },
+  "isolation": {
+    "sees_vipaksh_before_opening": false,
+    "sees_judge_rubric": true,
+    "sees_judge_weights": false
+  },
+  "rules": {
+    "allow_medium_assumptions": false,
+    "banned_phrases": [
+      "game-changer",
+      "game changer",
+      "revolutionary",
+      "guaranteed",
+      "guarantee success",
+      "can't fail",
+      "cannot fail",
+      "no-brainer",
+      "brilliant idea",
+      "great idea",
+      "amazing idea",
+      "100% sure",
+      "chance of success",
+      "probability of success",
+      "my opponent will",
+      "vipaksh will"
+    ],
+    "loaded_query_terms": [
+      "proof",
+      "prove",
+      "why .* (will )?succeed",
+      "benefits of",
+      "success of",
+      "best ",
+      "popular",
+      "everyone"
+    ]
+  },
+  "evidence": {
+    "require_verification": true,
+    "small_sample_threshold": 20,
+    "unverified_strength": "assertion",
+    "small_sample_max_strength": "opinion",
+    "max_quote_chars": 300
+  }
+}

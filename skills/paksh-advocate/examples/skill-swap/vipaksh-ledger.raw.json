@@ -1,0 +1,8 @@
+{
+  "owner": "vipaksh",
+  "research_mode": "case",
+  "items": [
+    { "id": "VE1", "source_type": "exhibit", "source": "swap-1", "quote": "Reach is not the same as successful matches.", "strength": "assertion", "stance": "against", "supports_area": "demand" },
+    { "id": "VE2", "source_type": "case", "source": "case.brief", "quote": "Students trade short skill sessions", "strength": "assertion", "stance": "mixed", "supports_area": "demand", "note": "The model assumes two-way demand at the same time." }
+  ]
+}

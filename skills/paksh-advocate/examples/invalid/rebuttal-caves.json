@@ -1,0 +1,8 @@
+{
+  "mode": "rebuttal",
+  "responses": [
+    { "target": "V1", "move": "concede", "reason": "Fair point, I agree with my colleague.", "evidence": [] },
+    { "target": "V2", "move": "counter", "reason": "That will not happen.", "evidence": [] }
+  ],
+  "statement": "You are right, I agree with everything."
+}

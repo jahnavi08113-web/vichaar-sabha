@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "vichaar-sabha/paksh-opening",
+  "title": "Paksh opening",
+  "type": "object",
+  "required": ["mode", "framing", "claims", "assumptions", "contrary_evidence", "concession", "proving_test", "statement"],
+  "additionalProperties": false,
+  "properties": {
+    "mode": { "const": "opening" },
+    "framing": { "type": "string", "minLength": 10, "maxLength": 300 },
+    "claims": {
+      "type": "array", "minItems": 1, "maxItems": 3,
+      "items": {
+        "type": "object", "required": ["id", "area", "text", "basis", "evidence", "confidence"], "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^P[1-9]$" },
+          "area": { "enum": ["demand", "feasibility", "viability", "risk", "goal_fit"] },
+          "text": { "type": "string", "minLength": 5, "maxLength": 220 },
+          "basis": { "enum": ["evidence", "assumption"] },
+          "evidence": { "type": "array", "items": { "type": "string", "pattern": "^PE[1-9][0-9]?$" }, "maxItems": 4 },
+          "confidence": { "enum": ["low", "medium", "high"] }
+        }
+      }
+    },
+    "assumptions": { "type": "array", "maxItems": 4, "items": { "type": "string", "maxLength": 200 } },
+    "outside_view": { "type": "array", "maxItems": 3, "items": { "type": "string", "maxLength": 200 } },
+    "contrary_evidence": { "type": "array", "items": { "type": "string", "pattern": "^PE[1-9][0-9]?$" } },
+    "concession": { "type": "string", "minLength": 10, "maxLength": 240 },
+    "proving_test": {
+      "type": "object", "required": ["action", "metric", "success_threshold", "timebox", "tests_claim"], "additionalProperties": false,
+      "properties": {
+        "action": { "type": "string", "maxLength": 240 },
+        "metric": { "type": "string", "maxLength": 120 },
+        "success_threshold": { "type": "string", "maxLength": 120 },
+        "timebox": { "type": "string", "maxLength": 40 },
+        "tests_claim": { "type": "string", "pattern": "^P[1-9]$" }
+      }
+    },
+    "statement": { "type": "string", "minLength": 20, "maxLength": 700 }
+  }
+}

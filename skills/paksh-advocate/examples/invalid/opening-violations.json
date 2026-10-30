@@ -1,0 +1,13 @@
+{
+  "mode": "opening",
+  "framing": "A revolutionary campus-wide learning marketplace.",
+  "claims": [
+    { "id": "P1", "area": "demand", "text": "40% of students will join in the first month.", "basis": "assumption", "evidence": [], "confidence": "high" },
+    { "id": "P2", "area": "feasibility", "text": "The clubs will bring hundreds of sign-ups.", "basis": "evidence", "evidence": ["PE9"], "confidence": "high" }
+  ],
+  "assumptions": [],
+  "contrary_evidence": [],
+  "concession": "We might be too ambitious.",
+  "proving_test": { "action": "Launch the app.", "metric": "Downloads", "success_threshold": "Lots", "timebox": "Soon", "tests_claim": "P4" },
+  "statement": "This is a game-changer. Vipaksh will say demand is unproven, but P1 shows otherwise."
+}
