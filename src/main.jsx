@@ -212,6 +212,8 @@ function CaseCard({
   counsel,
   onHearPakshLive,
   onOpenCounsel,
+  mode = 'demo',
+  onSwitchMode,
 }) {
   const isFile = typeof window !== 'undefined' && window.location.protocol === 'file:';
   const isOnline = counsel?.serverStatus === 'online';
@@ -228,7 +230,9 @@ function CaseCard({
     <section className="card case-card glass float" aria-label="Case brief">
       <div className="case-top">
         <p className="eyebrow"><Icon name="case" size={14} /> Case {kase.number} · {kase.custom ? 'Your idea' : 'Sample'}</p>
-        <span className="chip chip-live"><span className="dot" />Under review</span>
+        <span className={`chip ${mode === 'live' ? 'chip-live-accent' : 'chip-live'}`}>
+          <span className="dot" />{mode === 'live' ? 'Live review' : 'Under review'}
+        </span>
       </div>
       <h1 className="case-title">{kase.title}</h1>
       <p className="case-headline">{kase.headline}</p>
@@ -237,6 +241,14 @@ function CaseCard({
         <div><dt>Goal</dt><dd>{kase.goal}</dd></div>
         <div><dt>Record</dt><dd>{evidenceCount} {evidenceCount === 1 ? 'exhibit' : 'exhibits'}</dd></div>
       </dl>
+
+      {mode === 'live' && (
+        <div className="live-mode-banner">
+          <span className="live-dot" />
+          <span><b>Live AI Mode:</b> Real-time evidence grounding & advocate arguments.</span>
+        </div>
+      )}
+
       <div className="row gap-8 items-center case-card-actions" style={{ flexWrap: 'wrap' }}>
         <button className="btn btn-ghost btn-sm" onClick={onBrief}><Icon name="edit" size={16} />Edit brief</button>
         <button className="btn btn-ghost btn-sm" onClick={onEvidence}><Icon name="clip" size={16} />Evidence</button>
@@ -244,7 +256,7 @@ function CaseCard({
           isPakshReady ? (
             <button
               type="button"
-              className="btn btn-paksh-live btn-sm"
+              className={`btn btn-paksh-live btn-sm ${mode === 'live' ? 'is-featured' : ''}`}
               onClick={onHearPakshLive}
             >
               <Seal role="paksh" size={16} />
@@ -628,9 +640,12 @@ function ProfileDialog({ role, onClose, counsel, onOpenCounsel }) {
 }
 
 /* ---------- welcome ---------- */
-function Welcome({ leaving, onEnter }) {
-  const btn = useRef(null);
-  useEffect(() => { btn.current?.focus({ preventScroll: true }); }, []);
+function Welcome({ leaving, onEnter, counsel }) {
+  const demoBtn = useRef(null);
+  useEffect(() => { demoBtn.current?.focus({ preventScroll: true }); }, []);
+
+  const readyCount = counsel?.readyCount || 0;
+
   return (
     <div className={`welcome ${leaving ? 'is-leaving' : ''}`}>
       <div className="letterbox top" /><div className="letterbox bottom" />
@@ -639,8 +654,57 @@ function Welcome({ leaving, onEnter }) {
         <p className="welcome-brand">Vichaar Sabha <span>· The court of better ideas</span></p>
         <h1 className="welcome-title">Every idea deserves<br />its day in court.</h1>
         <p className="welcome-sub">One voice sees the possibility. Another asks the hard questions. You leave with a clearer next step.</p>
-        <button ref={btn} className="btn btn-primary btn-lg" onClick={onEnter}>Enter the courtroom<Icon name="arrow" size={18} /></button>
-        <p className="welcome-fine">Interactive demo · scripted hearing, no live AI</p>
+
+        <div className="welcome-modes" role="region" aria-label="Choose hearing mode">
+          {/* 1. Demo Mode */}
+          <div className="welcome-mode-card welcome-mode-demo">
+            <div className="welcome-mode-top">
+              <span className="welcome-mode-chip">Demo Mode</span>
+              <span className="welcome-mode-tag">Scripted · Instant</span>
+            </div>
+            <h2 className="welcome-mode-name">Scripted Courtroom</h2>
+            <p className="welcome-mode-text">
+              Explore 4 curated cases with pre-recorded dialogue, objections, and judge verdicts. No API keys required.
+            </p>
+            <button
+              ref={demoBtn}
+              type="button"
+              className="btn btn-ghost btn-mode"
+              onClick={() => onEnter('demo')}
+            >
+              <Icon name="case" size={16} />
+              <span>Enter Demo</span>
+              <Icon name="arrow" size={16} />
+            </button>
+          </div>
+
+          {/* 2. Live AI Mode */}
+          <div className="welcome-mode-card welcome-mode-live">
+            <div className="welcome-mode-top">
+              <span className="welcome-mode-chip chip-live-accent">
+                <span className="live-dot" /> Live AI Mode
+              </span>
+              <span className="welcome-mode-tag">
+                {readyCount > 0 ? `${readyCount}/3 counsel ready` : 'Multi-provider'}
+              </span>
+            </div>
+            <h2 className="welcome-mode-name">Live AI Hearing</h2>
+            <p className="welcome-mode-text">
+              Powered by connected models (Gemini, Claude, OpenAI). Isolated orchestrator, quote checks against exhibits, and live advocate arguments.
+            </p>
+            <button
+              type="button"
+              className="btn btn-primary btn-mode"
+              onClick={() => onEnter('live')}
+            >
+              <span className="live-dot pulse-white" />
+              <span>Enter Live Mode</span>
+              <Icon name="arrow" size={16} />
+            </button>
+          </div>
+        </div>
+
+        <p className="welcome-fine">Choose a mode to enter · Switch anytime from the top bar inside the courtroom</p>
       </div>
     </div>
   );
@@ -655,6 +719,7 @@ function App() {
 
   const [phase, setPhase] = useState('welcome');
   const [leaving, setLeaving] = useState(false);
+  const [mode, setMode] = useState(() => store.get('vs:mode', 'demo')); // 'demo' | 'live'
   const [theme, setTheme] = useState(() => store.get('vs:theme', 'day'));
   const [sound, setSound] = useState(false);
   const [custom, setCustom] = useState(() => store.get('vs:custom', { title: '', brief: '', goal: '' }));
@@ -806,7 +871,9 @@ function App() {
     return () => window.removeEventListener('keydown', on);
   }, [phase, dialog]);
 
-  const enter = () => {
+  const enter = (chosenMode = 'demo') => {
+    setMode(chosenMode);
+    store.set('vs:mode', chosenMode);
     setLeaving(true);
     setTimeout(() => {
       setPhase('court'); setLeaving(false);
@@ -887,7 +954,7 @@ function App() {
         connections={counsel.connections}
       />
 
-      {phase === 'welcome' && <Welcome leaving={leaving} onEnter={enter} />}
+      {phase === 'welcome' && <Welcome leaving={leaving} onEnter={enter} counsel={counsel} />}
 
       {phase === 'court' && (
         <div className="ui">
@@ -895,7 +962,51 @@ function App() {
             <div className="brand"><Seal role="judge" size={30} /><div><p className="brand-name">Vichaar Sabha</p>{!mobile && <p className="brand-tag">The court of better ideas</p>}</div></div>
             <div className={`status glass ${live ? 'is-live' : ''}`} role="status" aria-live="polite"><span className="dot" />{status}</div>
             <div className="top-actions">
-              {!mobile && <span className="chip chip-demo" title="Dialogue and verdicts are scripted samples">Interactive demo</span>}
+              <div className="segmented mode-switcher" role="radiogroup" aria-label="Courtroom mode">
+                <button
+                  type="button"
+                  role="radio"
+                  aria-checked={mode === 'demo'}
+                  className={mode === 'demo' ? 'is-on' : ''}
+                  onClick={() => {
+                    setMode('demo');
+                    store.set('vs:mode', 'demo');
+                    say('Switched to Demo Mode (scripted)');
+                  }}
+                  title="Demo Mode: Scripted sample hearing"
+                >
+                  <Icon name="case" size={13} />
+                  <span>Demo</span>
+                </button>
+                <button
+                  type="button"
+                  role="radio"
+                  aria-checked={mode === 'live'}
+                  className={mode === 'live' ? 'is-on' : ''}
+                  onClick={() => {
+                    setMode('live');
+                    store.set('vs:mode', 'live');
+                    say('Switched to Live AI Mode');
+                  }}
+                  title="Live AI Mode: Connected models & live hearings"
+                >
+                  <span className="live-dot" />
+                  <span>Live AI</span>
+                </button>
+              </div>
+
+              {!mobile && (
+                mode === 'live' ? (
+                  <span className="chip chip-live-mode" title="Live AI mode active">
+                    <span className="live-dot" />
+                    {counsel.readyCount > 0 ? `${counsel.readyCount}/3 ready` : 'Live AI'}
+                  </span>
+                ) : (
+                  <span className="chip chip-demo" title="Dialogue and verdicts are scripted samples">
+                    Interactive demo
+                  </span>
+                )
+              )}
               {compact && <button className="icon-btn glass" onClick={() => setDialog('notes')} aria-label="Hearing notes"><Icon name="notes" /></button>}
               <button
                 className="icon-btn glass"
@@ -934,6 +1045,8 @@ function App() {
             counsel={counsel}
             onHearPakshLive={() => setDialog('paksh-live')}
             onOpenCounsel={(r) => setDialog(`counsel:${r || 'paksh'}`)}
+            mode={mode}
+            onSwitchMode={setMode}
           />
           {!compact && <NotesCard kase={kase} step={step} objections={objections} userNotes={userNotes} />}
 
@@ -945,7 +1058,11 @@ function App() {
             onObject={() => { setPlaying(false); setDialog('objection'); }} canObject={canObject} objected={objected}
             onSubmitNote={submitNote} onAttach={() => setDialog('evidence:file')} />
 
-          <p className="scripted-tag">Scripted hearing · no live AI</p>
+          <p className="scripted-tag">
+            {mode === 'live'
+              ? `Live AI Mode · ${counsel.readyCount > 0 ? `${counsel.readyCount}/3 counsel configured` : 'Configure counsel in top bar'}`
+              : 'Scripted hearing · no live AI'}
+          </p>
           {toast && <div className="toast glass glass-strong" key={toast.k} role="status">{toast.msg}</div>}
         </div>
       )}
